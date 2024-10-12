@@ -32,17 +32,18 @@ coinData=\
         ["PlexHive","1C","32","PLHV",0]#in decimal:28,50
     ]
 
+private_key = password_to_private_key()
+public_key = private_key_to_public_key(private_key)
+
 theVersionByte = bytes.fromhex(coinData[0][1])
 theWifcVersionByte = bytes.fromhex(coinData[0][2])
 coin_address = public_key_to_address(public_key)
 wifc_key = private_key_to_wifc(private_key)
-private_key = password_to_private_key()
-public_key = private_key_to_public_key(private_key)
 
 print(coinData[0][0], "Address:", coin_address)
 print(coinData[0][0], "WIFC Key:", wifc_key)
 print("Private Key (hex):", private_key.to_string().hex())
 
 f = open("PlexHiveAddress.csv", "a")
-f.write(coinData[o][0] + ',' + coin_address + ',' + wifc_key + ',' + private_key.to_string().hex() + '\n')
+f.write(coinData[0][0] + ',' + coin_address + ',' + wifc_key + ',' + private_key.to_string().hex() + '\n')
 f.close()
